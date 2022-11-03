@@ -2,6 +2,7 @@ import os
 import sys
 import time
 import sqlite3
+from hashlib import sha256
 
 def animation(string):
     os.system('cls')
@@ -337,8 +338,10 @@ def signup_menu(database, users):
         if len(password) < 5:
             animation("PASSWORD IS TOO SHORT, MUST BE LONGER THAN 5 CHARACTERS")
             pw_step()
-
-        return password
+        h = sha256()
+        h.update(password.encode())
+        hash = h.digest()
+        return hash
 
     password = pw_step()
 
@@ -355,9 +358,9 @@ def signup_menu(database, users):
     check_input(p_address)
 
     database.cursor().execute('''
-            INSERT INTO USERS (username, password, name, phone, address, amt_due, amt_paid) 
-            VALUES (?, ?, ?, ?, ?, ?, ?)
-            ''', (username, password, full_name, p_number, p_address, 0.00, 0.00))
+            INSERT INTO USERS (username, password, name, phone, address) 
+            VALUES (?, ?, ?, ?, ?)
+            ''', (username, password, full_name, p_number, p_address))
     database.commit()
 
     animation("SUCCESSFULLY SIGNED UP, RETURNING TO MAIN MENU")
