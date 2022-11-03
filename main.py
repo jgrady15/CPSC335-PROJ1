@@ -302,12 +302,15 @@ def login_menu(database, users, passwords):
 
     if username in users:
         i = users.index(username.lower())
-        if password == passwords[i]:
+        h = sha256()
+        h.update(password.encode())
+        hash = h.digest()
+        if password == passwords[i] or hash == passwords[i]:
             animation(f"WELCOME {username}\n\n\tLOADING USER MENU")
             user_menu(database, username, users, passwords)
-
-    animation("USERNAME OR PASSWORD WAS INVALID, PLEASE TRY AGAIN")
-    login_menu(database, users, passwords)
+        else:
+            animation("USERNAME OR PASSWORD WAS INVALID, PLEASE TRY AGAIN")
+            login_menu(database, users, passwords)
 
 def signup_menu(database, users):
     def refresh_signup():
@@ -390,19 +393,20 @@ def card_faq_menu():
     check_input(command)
     
 def main():
+    users, passwords = [], []
     try:
         database = sqlite3.connect("database.db")
         connection = database.cursor()
-        connection.execute("SELECT username FROM USERS")
-        users = list(sum(connection.fetchall(), ()))
-
-        connection.execute("SELECT password FROM USERS")
-        passwords = list(sum(connection.fetchall(), ()))
+        connection.execute("SELECT username, password FROM USERS")
+        data = list(sum(connection.fetchall(), ()))
+        while data:
+            users.append(data.pop(0))
+            passwords.append(data.pop(0))
 
         print(users, passwords)
     except:
         print(sqlite3.Error)
-    time.sleep(2)
+    os.system('pause')
 
     running = True
     while running:
