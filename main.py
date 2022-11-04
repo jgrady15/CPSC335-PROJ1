@@ -5,14 +5,14 @@ import sqlite3
 from hashlib import sha256
 
 def animation(string):
-    os.system('cls')
+    os.system('clear')
 
     i = 0
     while i < 2:
         print(string + '.')
         i += 1
         time.sleep(0.75)
-        os.system('cls')
+        os.system('clear')
 
         print(string + '...')
         i += 1
@@ -33,7 +33,7 @@ def check_input(command):
 def user_menu(database, username, users, passwords):
     def upload_purchase():
         def refresh_purchase_entry():
-            os.system('cls')
+            os.system('clear')
             print(f"CURRENTLY SIGNED IN AS {username}")
             print("-------------------------------------------------------")
             print("----------- WELCOME TO OUR PAYMENT PLATFORM -----------")
@@ -50,13 +50,13 @@ def user_menu(database, username, users, passwords):
 
         refresh_purchase_entry()
         date = input("ENTER DATE: ")
-        os.system('cls')
+        os.system('clear')
 
         if date.lower() == "e" or date.lower() == "exit":
             user_menu(database, username, users, passwords)
 
         def check_card() -> str:
-            os.system('cls')
+            os.system('clear')
             print(f"CURRENTLY SIGNED IN AS {username}")
             print("-------------------------------------------------------")
             print("----------- WELCOME TO OUR PAYMENT PLATFORM -----------")
@@ -100,12 +100,12 @@ def user_menu(database, username, users, passwords):
         
         refresh_purchase_entry()
         amount = input("ENTER AMOUNT OF PURCHASE: ")
-        os.system('cls')
+        os.system('clear')
 
         if amount.lower() == "e" or amount.lower() == "exit":
             user_menu(database, username, users, passwords)
         
-        os.system('cls')
+        os.system('clear')
         print(f"CURRENTLY SIGNED IN AS {username}")
         print("-------------------------------------------------------")
         print("----------- WELCOME TO OUR PAYMENT PLATFORM -----------")
@@ -126,7 +126,7 @@ def user_menu(database, username, users, passwords):
         animation("SUCCESSFULLY ENTERED PURCHASE, RETURNING TO USER MENU")
 
     def refresh_user_menu():
-        os.system('cls')
+        os.system('clear')
         print(f"CURRENTLY SIGNED IN AS {username}")
         print("-------------------------------------------------------")
         print("----------- WELCOME TO OUR PAYMENT PLATFORM -----------")
@@ -148,7 +148,7 @@ def user_menu(database, username, users, passwords):
         refresh_user_menu()
         connection = database.cursor()
         command = input("WHAT WOULD YOU LIKE TO DO? ")
-        os.system('cls')
+        os.system('clear')
         
         if command.lower() == "e" or command.lower() == "exit":
             animation("SIGNING OUT")
@@ -202,7 +202,7 @@ def user_menu(database, username, users, passwords):
             time.sleep(4)
         
         elif command == "5":
-            os.system('cls')
+            os.system('clear')
             print(f"CURRENTLY SIGNED IN AS {username}")
             print("-------------------------------------------------------")
             print("----------- WELCOME TO OUR PAYMENT PLATFORM -----------")
@@ -277,7 +277,7 @@ def user_menu(database, username, users, passwords):
 
 def login_menu(database, users, passwords):
     def refresh_login():
-        os.system('cls')
+        os.system('clear')
         print("-------------------------------------------------------")
         print("-------------------- LOGIN SCREEN ---------------------")
         print("-------------------------------------------------------")
@@ -290,13 +290,13 @@ def login_menu(database, users, passwords):
         
     refresh_login()
     username = input("ENTER IN USERNAME: ")
-    os.system('cls')
+    os.system('clear')
     
     check_input(username)
 
     refresh_login()
     password = input("ENTER IN PASSWORD: ")
-    os.system('cls')
+    os.system('clear')
 
     check_input(password)
 
@@ -314,7 +314,7 @@ def login_menu(database, users, passwords):
 
 def signup_menu(database, users):
     def refresh_signup():
-        os.system('cls')
+        os.system('clear')
         print("-------------------------------------------------------")
         print("------------------- SIGN UP SCREEN --------------------")
         print("-------------------------------------------------------")
@@ -371,7 +371,7 @@ def signup_menu(database, users):
     main()
 
 def card_faq_menu():        
-    os.system('cls')
+    os.system('clear')
     print("-------------------------------------------------------")
     print("------------------- CARD FAQ MENU ---------------------")
     print("-------------------------------------------------------")
@@ -389,7 +389,7 @@ def card_faq_menu():
     print("|_____________________________________________________|")
     print("\n")
     command = input("WHAT WOULD YOU LIKE TO DO? ")
-    os.system('cls')
+    os.system('clear')
     check_input(command)
     
 def main():
@@ -410,7 +410,7 @@ def main():
 
     running = True
     while running:
-        os.system('cls')
+        os.system('clear')
         print("-------------------------------------------------------")
         print("----------- WELCOME TO OUR PAYMENT PLATFORM -----------")
         print("-------------------------------------------------------")
@@ -423,7 +423,7 @@ def main():
         print("|_____________________________________________________|")
         print("\n")
         command = input("WHAT WOULD YOU LIKE TO DO? ")
-        os.system('cls')
+        os.system('clear')
 
         if command == "1":
             if not users:
